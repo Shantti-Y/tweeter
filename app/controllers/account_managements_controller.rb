@@ -1,6 +1,7 @@
 class AccountManagementsController < ApplicationController
   before_action :get_user, only: [:reset_edit, :reset_update]
-  before_action :valid_user, only: [:reset_update]
+  before_action :valid_user, only: [:reset_edit, :reset_update]
+  before_action :reset_expired, only: [:reset_edit, :reset_update]
 
   def activation_create
     user = User.find_by(email_num: params[:email_num])
@@ -34,10 +35,7 @@ class AccountManagementsController < ApplicationController
   end
 
   def reset_edit
-    unless (@user && @user.activated? && @user.authenticated?(:reset, params[:id]))
-      flash[:danger] = "Invalid reset link"
-      redirect_to root_url
-    end
+
   end
 
   def reset_update
@@ -62,6 +60,14 @@ class AccountManagementsController < ApplicationController
 
     def valid_user
       unless (@user && @user.activated? && @user.authenticated?(:reset, params[:id]))
+        flash[:danger] = "Invalid reset link"
+        redirect_to root_url
+      end
+    end
+
+    def reset_expired
+      if @user.reseted_at <= 2.weeks.ago
+        flash[:danger] = "Invalid reset link"
         redirect_to root_url
       end
     end

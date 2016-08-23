@@ -57,13 +57,11 @@ class PasswordResetTest < ActionDispatch::IntegrationTest
     assert_select 'div#login'
 
     # Denied to access in expired date
-=begin
-    @user.reseted_at = 3.weeks.ago
+    @user.update_attribute(:reseted_at, 3.weeks.ago)
     get password_reset_confirmation_path(id: @user.reset_token, email_num: @user.email_num)
     assert_not flash.empty?
     assert_redirected_to root_url
-    @user.reseted_at = Time.zone.now
-=end
+    @user.update_attribute(:reseted_at, Time.zone.now)
 
     get password_reset_confirmation_path(id: @user.reset_token, email_num: @user.email_num)
     assert_response :success
