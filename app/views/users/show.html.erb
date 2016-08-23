@@ -1,0 +1,13 @@
+<div id="user-show">
+  <ul>
+    <li>Name : <%= @user.name %></li>
+    <li>Email (or Phone) : <%= @user.email_num %></li>
+  </ul>
+  <% if @user == log_user %>
+    <%= link_to "Edit profile", edit_user_path(@user) %>
+  <% end %>
+
+  <% if logged_in? && (log_user.admin? || @user == log_user) %>
+    <%= link_to "Delete profile", user_path(@user), method: :delete, data: { confirm: "Are you sure?" } %>
+  <% end %>
+</div>

@@ -1,0 +1,8 @@
+<h4>Hi, <%= @user.name %>!</h4>
+
+<p>
+  This is the mail for verifying your email address (<%= @user.email_num %>). You can access to all of
+  Tweeter's features if the URL below is available.
+</p>
+
+<%= link_to "Varify your address", account_activation_url(id: @user.activation_token, email_num: @user.email_num) %>

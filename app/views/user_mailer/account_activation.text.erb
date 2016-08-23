@@ -1,0 +1,6 @@
+Hi, <%= @user.name %>!
+
+This is the mail for verifying your email address (<%= @user.email_num %>). You can access to all of
+Tweeter's features if the URL below is available.
+
+<%= account_activation_url(id: @user.activation_token, email_num: @user.email_num) %>

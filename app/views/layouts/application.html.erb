@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tweeter</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+
+    <div id="header">
+      <div id="header-nav" class="global-nav">
+
+        <ul id="pull-left">
+          <li class="compact-icon"><%= link_to fa_icon("twitter", class: 'fa-lg'), home_path %></li>
+          <li>
+            <ul class="non-drop-list">
+              <li><%= link_to "Home", home_path %></li>
+              <li><%= link_to "About", about_path %></li>
+            </ul>
+          </li>
+
+        </ul>
+
+        <ul id="pull-right">
+          <% if logged_in? %>
+            <li class="compact-icon">
+              <i class="dropdown"><%= fa_icon("bars", class: 'fa-lg') %></i>
+            </li>
+            <li>
+              <ul class="non-drop-list">
+                <li><%= render 'layouts/search' %></li>
+                <li><%= link_to "Profile", user_path(log_user) %></li>
+                <li><%= link_to "Setting", edit_user_path(log_user) %></li>
+                <li><%= link_to "Log out", logout_path, method: :delete %></li>
+              </ul>
+            </li>
+            <script>
+              $('.dropdown').click(function(){
+                $('.drop-menu > ul').toggle();
+              });
+            </script>
+
+          <% else %>
+            <li><%= link_to "Log in", root_path %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% if logged_in?%>
+      <div class="drop-menu">
+        <ul>
+          <li><%= render 'layouts/search' %></li>
+          <li class="drop-border"></li>
+          <li><%= link_to "Profile", user_path(log_user) %></li>
+          <li><%= link_to "Setting", edit_user_path(log_user) %></li>
+          <li class="drop-border"></li>
+          <li><%= link_to "Log out", logout_path, method: :delete %></li>
+        </ul>
+      </div>
+      <% end %>
+
+      <% flash.each do |msg_type, msg| %>
+        <div id="flash" class="flash-<%= msg_type %>">
+          <p><%= msg %></p>
+        </div>
+      <% end %>
+    </div>
+
+    <div id="contents">
+      <%= yield %>
+    </div>
+
+    <div id="footer" class="debug">
+      <%= debug(params) if Rails.env.development? %>
+    </div>
+
+  </body>
+</html>

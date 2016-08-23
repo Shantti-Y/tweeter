@@ -1,0 +1,18 @@
+<div id="reset-new" class="layout-static">
+  <h1>Find your Tweeter account</h1>
+  <div class="sign-form">
+    <p>Enter your email, or phone number</p><br>
+    <%= form_for(@user, url: password_reset_confirmation_path(id: params[:id])) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= hidden_field_tag :email_num, @user.email_num %>
+
+      <%= f.password_field :password, placeholder: "Password" %>
+
+      <%= f.password_field :password_confirmation, placeholder: "Type same password again" %>
+
+      <%= f.submit "Submit" %>
+
+    <% end %>
+  </div>
+</div>

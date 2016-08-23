@@ -1,0 +1,39 @@
+<div id="login" style="background-image:url(<%= asset_path("home_bg_7.jpg") %>);">
+  <div id="login-layout" class="layout-static">
+    <section>
+      <h1>Welcome to Tweeter.</h1><br>
+      <p>Connect with your friends and other fascinating people. Get in-the-moment
+        updates on the things that interest you. So watch events unfold, in real time, from every angle.</p>
+    </section>
+    <aside class="content-box">
+      <h4>Login</h4>
+      <div class="content-border"></div>
+      <div class="sign-form">
+
+        <%= form_for(:session, url: login_path) do |f| %>
+          <%= f.text_field :email_num, placeholder: "Email or Phone" %>
+          <%= f.password_field :password, placeholder: "Password" %>
+          <%= f.check_box :insert_cookie %>
+          <span>Remember me</span>
+          <%= f.submit "Log in", class: 'btn btn-primary' %>
+        <% end %>
+
+      </div>
+      <div class="content-border"></div>
+      <%= link_to "Forgot password?", password_reset_path %>
+      <div class="content-border"></div>
+      <%= link_to "Are you a new user?", signup_path %>
+    </aside>
+  </div>
+  <footer>
+    <ul>
+      <li><%= link_to "About", about_path %></li>
+      <li><%= link_to "Help", help_path %></li>
+      <li><%= link_to "Contact", contact_path %></li>
+      <li><%= link_to "Ruby-on-Rails", "http://rubyonrails.org" %></li>
+      <li><%= link_to "Twitter", "http://rubyonrails.org" %></li>
+      <li>@2016 Tweeter made by Shantti-Y</li>
+    </ul>
+  </footer>
+
+</div>

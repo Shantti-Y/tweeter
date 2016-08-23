@@ -1,0 +1,36 @@
+<div id="about">
+  <%= image_tag("about_bg.jpg", width: "100%") %>
+  <div class="layout-static">
+    <header>
+      <%= fa_icon("twitter", class: "twitter-icon") %>
+      <p>Our mission: To give everyone the power to create and share ideas</p>
+      <p>and information. Let's gain your posibility.</p>
+    </header>
+    <section style="background-image:url(<%= asset_path('about_img.jpg') %>);">
+      <h5>OFFICE INFORMATION</h5><br>
+      <ul>
+        <li><strong>Headequarters</strong></li>
+        <li>210 Don Gaspar Ave</li>
+        <li>Santa Fe, NM</li>
+        <li>USA</li>
+      </ul>
+      <ul>
+        <li><strong>U.S.Offices</strong></li>
+        <li>Atlanta, Boston, Boulder, Chicago, Cincinnati, Detroit, Los Angeles,
+          Miami, New York, Seattle, Sunnyvale, Washington, D.C.</li>
+      </ul>
+      <ul>
+        <li><strong>International offices</strong></li>
+        <li>Amsterdam, Bangalore, Berlin, Bogota, Brussels, Cologne, Dubai, Dublin,
+           Hamburg, Hong Kong, Jakarta, London, Madrid, Melbourne, Mexico City, Milan,
+            Mumbai, New Delhi, Osaka, Paris, Rio de Janeiro, São Paulo, Singapore, Sydney,
+             Seoul, Tokyo, Toronto, Vancouver</li>
+      </ul>
+    </section>
+    <footer>
+      <p>See what's happening in the world right now.</p>
+      <%= link_to "Join now", root_path %>
+    </footer>
+  </div>
+
+</div>

@@ -1,0 +1,38 @@
+<div id="help">
+  <%= image_tag("help_bg.jpg", width: "100%") %>
+  <div class="layout-static">
+    <header>
+      <p>Get instant answers for themost common questions and</p>
+      <p>learn how to use 140 characters like a pro.</p>
+    </header>
+    <section>
+      <ul>
+        <li>
+          <%= fa_icon("twitter", class: "help-icon") %>
+          <h5>Using Tweeter</h5>
+          <p>Learn the basics to help you make the most of Tweeter</p>
+        </li>
+        <li>
+          <%= fa_icon("user", class: "help-icon") %>
+          <h5>My account</h5>
+          <p>Manage your profile and your account settings</p>
+        </li>
+        <li>
+          <%= fa_icon("archive", class: "help-icon") %>
+          <h5>Fix a problem</h5>
+          <p>Find solutions to the most common problems</p>
+        </li>
+        <li>
+          <%= fa_icon("suitcase", class: "help-icon") %>
+          <h5>Policies and report</h5>
+          <p>Understand the Tweeter Rules and report violations</p>
+        </li>
+      </ul>
+    </section>
+    <footer>
+      <p>Are you new to TWEETER?</p>
+      <%= link_to "Join now", root_path %>
+    </footer>
+  </div>
+
+</div>

@@ -1,0 +1,384 @@
+@import "font-awesome";
+
+/*******************************************
+
+
+                Defaults
+
+
+*******************************************/
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #f8fcfd;
+  * {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    line-height: 130%;
+    color: #6d6d6d;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+p {}
+a {  text-decoration: none;}
+i {}
+strong {}
+h1 { font-size: 35px; }
+h2 { font-size: 30px; }
+h3 { font-size: 25px; }
+h4 { font-size: 20px; }
+h5 { font-size: 15px; }
+h6 { font-size: 10px; }
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  li {list-style-type: none;}
+}
+
+form {
+  input {
+    border: none;
+  }
+}
+
+button {
+  border: 0;
+  background: auto;
+}
+
+/*******************************************
+
+
+                  Sizing
+
+
+*******************************************/
+
+.layout-static {
+  margin: 0 auto;
+  width: 900px;
+}
+
+.layout-main {
+  margin: 0 auto;
+  width: 1050px;
+}
+
+/*******************************************
+
+
+                Components
+
+
+*******************************************/
+
+.content-box {
+  padding: 14px 13px;
+  background: #f8fcfd;
+  border: 1px solid #bdbdbd;
+  border-radius: 6px;
+  .content-border {
+    border-top: 1px solid #dedede;
+    margin: 12px 0;
+  }
+}
+
+.search-form {
+  form {
+    input[type=text], input[type=password] {
+      border: 1px solid #dedede;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      font-size: 11px;
+      padding: 3px 4px;
+      &:focus { border-color: #6699ff; }
+    }
+    span {
+      padding: 3px 5px 4px 5px;
+      border-top: 1px solid #dedede;
+      border-bottom: 1px solid #dedede;
+      border-right: 1px solid #dedede;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      font-size: 10px;
+    }
+  }
+}
+
+.global-nav {
+  background-color: #f8fcfd;
+  border-bottom: 1px solid #bdbdbd;
+  ul {
+    li {
+      a, .dropdown {
+        display: block;
+        padding: 12px 14px;
+        border-bottom: 3px solid #f8fcfd;
+        &:hover {
+          cursor: pointer;
+          border-color: #6699ff;
+          transition: border-color 0.3s;
+        }
+      }
+    }
+    .compact-icon { display: none; }
+    .non-drop-list {
+      li { display: inline-block; }
+      .search-form {
+
+        form {
+          input[type=text], input[type=password] {  }
+          span {  }
+        }
+      }
+    }
+  }
+}
+
+
+
+.drop-menu {
+  display: none;
+  ul { display: none; }
+}
+
+@media all and (max-width: 800px) {
+  .global-nav {
+    ul {
+      .compact-icon { display: block; }
+      .fa-twitter { color: #6699ff; }
+    }
+    .non-drop-list { display: none; }
+  }
+
+  .drop-menu {
+    display: block;
+    ul {
+      border: 1px solid #dedede;
+      background-color: #f8fcfd;
+      border-radius: 7px;
+      overflow-x: visible;
+      width: 125px;
+      margin: 7px 12px 0 0;
+      float: right;
+      li:first-child { margin-top: 10px; }
+      li:last-child { margin-bottom: 10px; }
+      .drop-border {
+        border-top: 1px solid #dedede;
+        margin: 8px 0;
+      }
+      a {
+        font-size: 10px;
+        display: block;
+        padding: 8px 12px;
+        &:hover {
+          background: #6699ff;
+          color: #f8fcfd;
+        }
+      }
+
+      .search-form {
+            margin: 0 8px;
+            display: inline-block;
+        form {
+          input[type=text], input[type=password] {
+            float: left;
+            width: 88px;
+            box-sizing: border-box;
+          }
+          span { float: left; }
+        }
+      }
+    }
+
+
+  }
+
+}
+
+.sign-form {
+  form {
+    input[type=text], input[type=password] {
+      border: 1px solid #dedede;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 12px;
+      display: inline;
+      width: 100%;
+      padding: 5px 4px;
+      margin-bottom: 12px;
+
+      &:focus { border-color: #6699ff; }
+    }
+    span { font-size: 10px; }
+  }
+}
+
+.btn {
+  color: #ffffff;
+  padding: 5px 12px;
+  display: inline-block;
+  font-size: 12px;
+  border: 1px solid;
+  border-radius: 5px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.btn-primary {
+  border-color: #2e6da4;
+  background-color: #337ab7;
+  &:hover {
+    background-color: #2e6da4;
+  }
+}
+.btn-success {
+  border-color: #4cae4c;
+  background-color: #5cb85c;
+  &:hover {
+    background-color: #4cae4c;
+  }
+}
+.btn-info {
+  border-color: #46b8da;
+  background-color: #5bc0de;
+  &:hover {
+    background-color: #46b8da;
+  }
+}
+.btn-warning {
+  border-color: #eea236;
+  background-color: #f0ad4e;
+  &:hover {
+    background-color: #eea236;
+  }
+}
+.btn-danger {
+  border-color: #d43f3a;
+  background-color: #d9534f;
+  &:hover {
+    background-color: #d43f3a;
+  }
+}
+
+
+/*******************************************
+
+
+                  Flash
+
+
+*******************************************/
+
+#flash {
+    display: block;
+    text-align: center;
+    border-radius: 6px;
+    opacity: 0.7;
+    max-width: 50%;
+    margin: 0 auto;
+    p {
+      display: block;
+      padding: 12px;
+    }
+}
+
+.flash-success {
+    background-color: #dff0d8;
+    p { color: #3c763d; }
+  }
+.flash-info {
+    background-color: #d9edf7;
+    p { color: #31708f; }
+  }
+.flash-warning {
+    background-color: #fcf8e3;
+    p { color: #8a6d3b; }
+  }
+.flash-danger {
+    background-color: #f2dede;
+    p { color: #a94442; }
+  }
+
+/*******************************************
+
+
+                  Layout
+
+
+*******************************************/
+
+#header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  #header-nav {
+    overflow: hidden;
+    #pull-left {
+      float: left;
+      margin-left: 10%;
+    }
+    #pull-right {
+      float: right;
+      margin-right: 10%;
+    }
+  }
+}
+
+#contents {
+  margin-top: 40px;
+  height: 100%;
+}
+
+/*******************************************
+
+
+                  Errors
+
+
+*******************************************/
+
+#error-explanation {
+  #error-alert {
+    background: #ffcccc;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    p {
+      color: #ff0000;
+      padding: 12px;
+    }
+  }
+  ul {
+    li {
+      margin-bottom: 10px;
+      color: #ff0000;
+    }
+  }
+}
+
+
+.debug {
+  max-width: 70%;
+  background: #d3d3d3;
+  padding: 10px 25px;
+  margin: 30px auto;
+  border: 1px solid #888888;
+}
+/*******************************************
+
+
+                  Users
+
+
+*******************************************/
+
+#users-new {
+  width: 260px;
+  margin: 70px auto;
+}

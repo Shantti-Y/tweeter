@@ -1,0 +1,13 @@
+<div id="reset-new" class="layout-static">
+  <h1>Find your Tweeter account</h1>
+  <div class="sign-form">
+    <p>Enter your email, or phone number</p><br>
+    <%= form_for(:password_reset, url: password_reset_path) do |f| %>
+
+      <%= f.text_field :email_num, placeholder: "Email or Phone" %>
+
+      <%= f.submit "Send verification" %>
+
+    <% end %>
+  </div>
+</div>
