@@ -12,10 +12,10 @@
       <div id="header-nav" class="global-nav">
 
         <ul id="pull-left">
-          <li class="compact-icon"><%= link_to fa_icon("twitter", class: 'fa-lg'), home_path %></li>
+          <li class="compact-icon"><%= link_to fa_icon("twitter", class: 'fa-lg'), root_path %></li>
           <li>
             <ul class="non-drop-list">
-              <li><%= link_to "Home", home_path %></li>
+              <li><%= link_to "Home", root_path %></li>
               <li><%= link_to "About", about_path %></li>
             </ul>
           </li>
@@ -52,8 +52,9 @@
           <li><%= render 'layouts/search' %></li>
           <li class="drop-border"></li>
           <li><%= link_to "Profile", user_path(log_user) %></li>
-          <li><%= link_to "Setting", edit_user_path(log_user) %></li>
+          <li><%= link_to "Help", help_path %></li>
           <li class="drop-border"></li>
+          <li><%= link_to "Setting", edit_user_path(log_user) %></li>
           <li><%= link_to "Log out", logout_path, method: :delete %></li>
         </ul>
       </div>
@@ -63,6 +64,11 @@
         <div id="flash" class="flash-<%= msg_type %>">
           <p><%= msg %></p>
         </div>
+        <script>
+          $('#flash').click(function(){
+            $('#flash').hide();
+          });
+        </script>
       <% end %>
     </div>
 

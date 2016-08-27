@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+hello:
+  content: Hello World!
+  user: michael
+
+morning:
+  content: Good Morning!
+  user: michael
+
+afternoon:
+  content: Good Afternoon
+  user: michael
+
+evening:
+  content: Good Evening!
+  user: michael
+
+# Records created by non admin user
+
+orange:
+  content: Orange is new black
+  user: archer
+
+apple:
+  content: Apple seeds are contained in an Apple
+  user: archer
+
+grape:
+  content: Grapes are new orange relative to be colored like black
+  user: archer
+
+
+<% 50.times do |n| %>
+tweet_<%= n %>:
+  content: <%= Faker::Lorem.sentences(3) %>
+  user: michael
+  created_at: <%= n.days.ago %>
+<% end %>

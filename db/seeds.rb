@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# Seeds for users
 User.create!(name: "shantti_y",
              email_num: "hammpilot@gmail.com",
              password: "d1am0n6s",
@@ -15,13 +16,13 @@ User.create!(name: "shantti_y",
              activated_at: Time.zone.now)
 
  User.create!(name: "example_user",
-              email_num: "example@raistutorial.org",
+              email_num: "example@railstutorial.org",
               password: "d1am0n6s",
               password_confirmation: "d1am0n6s",
               activated: true,
               activated_at: Time.zone.now)
 
-99.times do |n|
+48.times do |n|
   name = Faker::Name.name
   email_num = "example-#{n+1}@railstutorial.org"
   password = "password"
@@ -31,4 +32,14 @@ User.create!(name: "shantti_y",
                password_confirmation: password,
                activated: true,
                activated_at: Time.zone.now)
+end
+
+# Seeds for tweets
+users = User.order(:id)
+users.each do |user|
+  20.times do |n|
+    r = Random.new
+    created_at = Time.zone.now - r.rand(24*60*60)
+    user.tweets.create!(content: Faker::Lorem.sentence(3), created_at: created_at)
+  end
 end

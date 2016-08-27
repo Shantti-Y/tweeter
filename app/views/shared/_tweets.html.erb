@@ -1,0 +1,51 @@
+<div id="column-left">
+  <div id="profile" class="content-box">
+    <div class="profile-background">
+      <%= image_tag('about_bg.jpg') %>
+    </div>
+    <div class="profile-information">
+      <div class="profile-image">
+        <%= image_tag('home_bg_2.jpg') %>
+        <ul>
+          <li><%= link_to @user.name, user_path(@user) %></li>
+          <li><p><%= @user.name %></p></li>
+        </ul>
+      </div>
+
+    </div>
+    <ul class="profile-list">
+      <li>Tweets<br><%= @user.tweets.count %></li>
+      <li>Following<br>12</li>
+      <li>Followers<br>8</li>
+    </ul>
+    <% if current_page?(user_path(@user)) %>
+      <div class="profile-setting">
+        <% if @user == log_user %>
+          <%= link_to "Edit profile", edit_user_path(@user), class: 'delete btn btn-info' %>
+        <% end %>
+
+        <% if logged_in? && (log_user.admin? || @user == log_user) %>
+          <%= link_to "Delete profile", user_path(@user), method: :delete, data: { confirm: "Are you sure?" }, class: 'delete btn btn-info' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div id="trends" class="content-box">
+    <p>This contains will be filled with reccomended users to follow.</p>
+  </div>
+
+
+</div>
+
+<div id="column-middle" class="content-box">
+    <%= render 'tweets/new' %>
+
+    <div id="tweet-line">
+      <%= render 'shared/tweet_list' %>
+    </div>
+  </div>
+
+<div id="column-right" class="content-box">
+  <p>This contains will be filled with reccomended users to follow.</p>
+</div>

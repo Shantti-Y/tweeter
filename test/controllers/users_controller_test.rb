@@ -22,12 +22,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get user_path(@other_user)
     assert_response :success
     assert_select 'a[href=?]', edit_user_path(@other_user)
-    assert_select 'a[href=?]', user_path(@other_user), method: :delete
+    assert_select 'a.delete[href=?]', user_path(@other_user)
 
     get user_path(@user)
     assert_response :success
     assert_select 'a[href=?]', edit_user_path(@user), 0
-    assert_select 'a[href=?]', user_path(@user), 0, method: :delete
+    assert_select 'a.delete[href=?]', user_path(@user), 0
   end
 
   test "enable to access delete other user by admin user" do
@@ -35,7 +35,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get user_path(@other_user)
     assert_response :success
     assert_select 'a[href=?]', edit_user_path(@other_user), 0
-    assert_select 'a[href=?]', user_path(@other_user), method: :delete
+    assert_select 'a.delete[href=?]', user_path(@other_user)
   end
 
   test "enable to access edit page with log in" do

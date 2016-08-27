@@ -4,12 +4,16 @@ class UsersController < ApplicationController
   before_action :url_log
   before_action :admin_user, only: [:destroy]
 
-  def show
-    @user = User.find(params[:id])
-  end
-
   def new
     @user = User.new
+  end
+
+  def show
+    session[:tweet_count] = 20 if session[:tweet_count].nil?
+    @user = User.find(params[:id])
+    @tweets = @user.tweets.order(:created_at).reverse.take(session[:tweet_count])
+    @tweet = Tweet.new()
+    session.delete(:tweet_count)
   end
 
   def create
