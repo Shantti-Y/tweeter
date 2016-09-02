@@ -1,0 +1,4 @@
+$(".profile-list > li:nth-child(2)").html('Following<br><%= link_to @user.following.count, following_path(id: @user) %>');
+$(".profile-list > li:nth-child(3)").html('Followers<br><%= link_to @user.followers.count, followers_path(id: @user) %>');
+$(".follow-user").html("<%= escape_javascript(render('follows/follow_user')) %>");
+$('#follow-<%= @follow.id %>').html("<%= escape_javascript(render('follows/follow_users', follow: @follow)) %>");

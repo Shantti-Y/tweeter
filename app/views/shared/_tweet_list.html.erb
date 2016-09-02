@@ -3,7 +3,7 @@
     <%= image_tag('home_bg_2.jpg') %>
     <div class="tweet-info">
       <ul class="tweet-info-title">
-        <li><%= link_to tweet.user.name, user_path(tweet.user) %></li>
+        <li><%= link_to tweet.user.name_omit, user_path(tweet.user) %></li>
         <li><%= tweet.user.name %></li>
         <li><%= tweet.tweeted_at %></li>
       </ul>
@@ -20,7 +20,7 @@
   </div>
 <% end %>
 
-<% if (session[:forwarding_url] == root_url && @tweets.count < Tweet.count) ||
+<% if (session[:forwarding_url] == root_url && @tweets.count < @user.feed.count) ||
   (session[:forwarding_url] == user_url(@user) && @tweets.count < @user.tweets.count) %>
   <div id="tweet-reload">
     <%= link_to "Reload previous tweets", reload_path(id: @user, count: @tweets.count), remote: true %>

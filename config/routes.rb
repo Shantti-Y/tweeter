@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'follows/following'
+
+  get 'follows/followers'
+
   # Routes for static_pages
   root 'static_pages#home'
   get '/about', to: 'static_pages#about'
@@ -25,6 +29,10 @@ Rails.application.routes.draw do
   # Routes for tweets
   resources 'tweets'
 
+  # Routes for follows
+  get '/following/:id', to: 'follows#following', as: :following
+  get '/followers/:id', to: 'follows#followers', as: :followers
+  resources 'follows', only: [:create, :destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

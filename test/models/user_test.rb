@@ -128,4 +128,29 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.activation_token.nil?
   end
 
+  test "should follow other user" do
+    michael = users(:michael)
+    archer = users(:archer)
+    lana = users(:lana)
+    michael.follow(archer)
+    assert michael.following?(archer)
+    assert_not michael.following?(lana)
+  end
+
+  test "should unfollow other user" do
+    michael = users(:michael)
+    archer = users(:archer)
+    michael.follow(archer)
+    michael.unfollow(archer)
+    assert_not michael.following?(archer)
+  end
+
+  test "should feed right posts for particular user" do
+    michael = users(:michael)
+    jimmy = users(:jimmy)
+    chuck = users(:chuck)
+    michael.follow(jimmy)
+    assert_equal 44, michael.feed.count
+  end
+
 end

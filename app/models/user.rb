@@ -1,5 +1,13 @@
 class User < ApplicationRecord
   has_many :tweets, dependent: :destroy
+  has_many :active_relationships, class_name: "Relationship",
+                                  foreign_key: "follower_id",
+                                  dependent: :destroy
+  has_many :following, through: :active_relationships, source: :following
+  has_many :passive_relationships, class_name: "Relationship",
+                                   foreign_key: "following_id",
+                                   dependent: :destroy
+  has_many :followers, through: :passive_relationships, source: :follower
 
   attr_accessor :remember_token, :activation_token, :reset_token
 
@@ -60,14 +68,40 @@ class User < ApplicationRecord
     self.update_attribute(:reseted_at, nil)
   end
 
-
-
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
   end
 
   def send_password_reset_email
     UserMailer.password_reset(self).deliver_now
+  end
+
+  # Methods for creating and assuring relationships
+  def follow(other_user)
+    active_relationships.create(following_id: other_user.id)
+  end
+
+  def unfollow(other_user)
+    active_relationships.find_by(following_id: other_user.id).destroy
+  end
+
+  def following?(other_user)
+    following.include?(other_user)
+  end
+
+  def feed
+    #following_ids = Relationship.where(follower_id: self.id)
+    #Tweet.where(user_id: following_ids).or(Tweet.where(user_id: self.id))
+    Tweet.where(user_id: self.following).or(Tweet.where(user_id: self.id))
+  end
+
+  def name_omit
+    if self.name.size > 13
+      self.name[0..12] + "..."
+    else
+      self.name
+    end
+
   end
 
   private

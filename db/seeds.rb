@@ -22,7 +22,7 @@ User.create!(name: "shantti_y",
               activated: true,
               activated_at: Time.zone.now)
 
-48.times do |n|
+98.times do |n|
   name = Faker::Name.name
   email_num = "example-#{n+1}@railstutorial.org"
   password = "password"
@@ -41,5 +41,12 @@ users.each do |user|
     r = Random.new
     created_at = Time.zone.now - r.rand(24*60*60)
     user.tweets.create!(content: Faker::Lorem.sentence(3), created_at: created_at)
+  end
+end
+
+users.each do |user|
+  r = Random.new
+  r.rand(50).times do |n|
+    user.follow(User.find(r.rand(99) + 1))
   end
 end

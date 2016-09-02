@@ -398,7 +398,7 @@ button {
 
 *******************************************/
 
-#column-left {
+#tri-column-left {
   float: left;
   margin-right: 15px;
   #profile {
@@ -452,7 +452,7 @@ button {
 
 }
 
-#column-middle {
+#tri-column-middle {
   float: left;
   width: 420px;
   margin-right: 15px;
@@ -569,13 +569,13 @@ button {
   }
 }
 
-#column-right {
+#tri-column-right {
   float: left;
   width: 176px;
 }
 
 @media all and (max-width: 800px) {
-  #column-left {
+  #tri-column-left {
     margin-left: 26px;;
     #trends {
       width: 190px;
@@ -583,5 +583,148 @@ button {
       margin-top: 10px;
     }
   }
-  #column-right { display: none; }
+  #tri-column-right { display: none; }
+}
+
+/*******************************************
+
+
+                  Tweets
+
+
+*******************************************/
+
+#twin-column-left {
+  float: left;
+  margin-right: 15px;
+  #profile {
+      width: 190px;
+    .profile-background {
+      img {
+        width: 216px;
+        height: 80px;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        margin: -14px -13px;
+      }
+    }
+    .profile-information {
+      margin-top: -12px;
+      .profile-image {
+        img {
+          margin-top: -7px 4px 0 0;
+          padding: 3px;
+          background: #f8fcfd;
+          display: inline-block;
+          border-radius: 8px;
+          width: 54px;
+          height: 54px;
+        }
+        ul {
+          display: inline-block;
+          margin-top: -7px;
+          a{
+            font-size: 17px;
+            &:hover { text-decoration: underline; }
+          }
+          p { font-size: 11px; }
+        }
+      }
+
+    }
+    .profile-list {
+      margin-top: 8px;
+      li {
+        display: inline-block;
+        margin-right: 14px;
+        &:last-child { margin-right: 0; }
+      }
+    }
+
+    .profile-setting { margin-top: 9px; }
+  }
+
+  #trends { display: none; }
+
+}
+
+#twin-column-right {
+  float: left;
+  width: 667px;
+
+  .follow-profile {
+      width: 168px;
+      margin: 12px 0 0 13px;
+      display: inline-block;
+    .profile-background {
+      img {
+        width: 194px;
+        height: 80px;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        margin: -14px -13px;
+      }
+    }
+    .profile-information {
+      margin-top: -12px;
+      margin-bottom: 10px;
+      position: relative;
+      .profile-image {
+        img {
+          margin-top: -7px 4px 0 0;
+          padding: 3px;
+          background: #f8fcfd;
+          display: inline-block;
+          border-radius: 8px;
+          width: 47px;
+          height: 47px;
+        }
+      }
+      .profile-follow {
+        position: absolute;
+        top: 28px;
+        right: 13px;
+        float: left;
+      }
+
+    }
+    .profile-description {
+      ul {
+        display: inline-block;
+        margin-top: -7px;
+        a{
+          font-size: 17px;
+          &:hover { text-decoration: underline; }
+        }
+        p {
+          margin-top: 0;
+          font-size: 11px;
+        }
+      }
+      p { margin-top: 6px; }
+    }
+    .profile-list {
+      margin-top: 8px;
+      li {
+        display: inline-block;
+        margin-right: 14px;
+        &:last-child { margin-right: 0; }
+      }
+    }
+
+    .profile-setting { margin-top: 9px; }
+  }
+
+  #tweet-reload {
+    text-align: center;
+    a {
+      padding: 3px 0;
+      display: block;
+      color: #000545;
+      background: #6699ff;
+    }
+  }
+}
+
+@media all and (max-width: 800px) {
 }

@@ -31,9 +31,25 @@ grape:
   user: archer
 
 
-<% 50.times do |n| %>
-tweet_<%= n %>:
+
+<% 20.times do |n| %>
+tweet_michael_<%= n %>:
   content: <%= Faker::Lorem.sentences(3) %>
   user: michael
+  created_at: <%= n.days.ago %>
+
+tweet_lana_<%= n %>:
+  content: <%= Faker::Lorem.sentences(3) %>
+  user: lana
+  created_at: <%= n.days.ago %>
+
+tweet_jimjy_<%= n %>:
+  content: <%= Faker::Lorem.sentences(3) %>
+  user: jimmy
+  created_at: <%= n.days.ago %>
+
+tweet_chuck_<%= n %>:
+  content: <%= Faker::Lorem.sentences(3) %>
+  user: chuck
   created_at: <%= n.days.ago %>
 <% end %>
