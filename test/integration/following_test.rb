@@ -35,9 +35,26 @@ class FollowingTest < ActionDispatch::IntegrationTest
   end
 
   test "should follow with ajax" do
+
+    get user_path(@second_user)
     assert_difference '@first_user.following.count', 1 do
       post follows_path, xhr: true, params: { id: @second_user.id }
     end
+    @first_user.follow(@second_user)
+
+    get following_path(@second_user)
+    assert_difference '@first_user.following.count', 1 do
+      post follows_path, xhr: true, params: { id: @second_user.id }
+    end
+    @first_user.follow(@second_user)
+
+
+    get followers_path(@second_user)
+    assert_difference '@first_user.following.count', 1 do
+      post follows_path, xhr: true, params: { id: @second_user.id }
+    end
+
+
   end
 
   test "should unfollow in a standard way" do
@@ -47,9 +64,24 @@ class FollowingTest < ActionDispatch::IntegrationTest
   end
 
   test "should unfollow with ajax" do
+
+    get user_path(@third_user)
     assert_difference '@first_user.following.count', -1 do
       delete follow_path(@third_user), xhr: true
     end
+    @first_user.follow(@third_user)
+
+    get following_path(@third_user)
+    assert_difference '@first_user.following.count', -1 do
+      delete follow_path(@third_user), xhr: true
+    end
+    @first_user.follow(@third_user)
+
+    get followers_path(@third_user)
+    assert_difference '@first_user.following.count', -1 do
+      delete follow_path(@third_user), xhr: true
+    end
+
   end
 
 end

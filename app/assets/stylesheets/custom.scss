@@ -70,8 +70,46 @@ button {
   width: 900px;
 }
 
+#two-columns {
+  width: 890px;
+  margin: 0 auto;
+  overflow: hidden;
+
+  #columns-left {
+    float: left;
+    width: 230px;
+  }
+
+  #columns-right {
+    float: right;
+    width: 660px;
+    overflow: hidden;
+
+    #columns-right-left {
+      float: left;
+      width: 430px;
+    }
+
+    #columns-right-right {
+      float: right;
+      width: 218px;
+      margin-left: 12px;
+    }
+  }
+}
+
 @media all and (max-width: 800px) {
-  .layout-main { width: 734px; }
+  #two-columns {
+    width: 684px;
+    #columns-left { margin-left: 12px; }
+    #columns-right {
+      float: right;
+      width: 430px;
+      margin-right: 12px;
+
+      #columns-right-right { display: none; }
+    }
+  }
 }
 
 /*******************************************
@@ -85,7 +123,7 @@ button {
 .content-box {
   padding: 14px 13px;
   background: #ffffff;
-  border: 1px solid #bdbdbd;
+  border: 1px solid #e1e8ed;
   border-radius: 6px;
   .content-border {
     border-top: 1px solid #dedede;
@@ -117,7 +155,7 @@ button {
 
 .global-nav {
   background-color: #f8fcfd;
-  border-bottom: 1px solid #bdbdbd;
+  border-bottom: 1px solid #e1e8ed;
   ul {
     li {
       a, .dropdown {
@@ -126,7 +164,7 @@ button {
         border-bottom: 3px solid #f8fcfd;
         &:hover {
           cursor: pointer;
-          border-color: #6699ff;
+          border-color: #008484;
           transition: border-color 0.3s;
         }
       }
@@ -145,12 +183,47 @@ button {
   }
 }
 
-
-
 .drop-menu {
-  display: none;
-  ul { display: none; }
+  ul {
+    border: 1px solid #dedede;
+    background-color: #f8fcfd;
+    border-radius: 7px;
+    overflow-x: visible;
+
+    margin: 7px 12px 0 0;
+    float: right;
+    li:first-child { margin-top: 10px; }
+    li:last-child { margin-bottom: 10px; }
+    .drop-border {
+      border-top: 1px solid #dedede;
+      margin: 8px 0;
+    }
+    a {
+      font-size: 10px;
+      display: block;
+      &:hover {
+        background: #008484;
+        color: #f8fcfd;
+      }
+    }
+
+    .search-form {
+          margin: 0 8px;
+          display: inline-block;
+      form {
+        input[type=text], input[type=password] {
+          float: left;
+          width: 88px;
+          box-sizing: border-box;
+        }
+        span { float: left; }
+      }
+    }
+  }
+
+
 }
+
 
 @media all and (max-width: 800px) {
   .global-nav {
@@ -160,50 +233,6 @@ button {
     }
     .non-drop-list { display: none; }
   }
-
-  .drop-menu {
-    display: block;
-    ul {
-      border: 1px solid #dedede;
-      background-color: #f8fcfd;
-      border-radius: 7px;
-      overflow-x: visible;
-      width: 125px;
-      margin: 7px 12px 0 0;
-      float: right;
-      li:first-child { margin-top: 10px; }
-      li:last-child { margin-bottom: 10px; }
-      .drop-border {
-        border-top: 1px solid #dedede;
-        margin: 8px 0;
-      }
-      a {
-        font-size: 10px;
-        display: block;
-        padding: 8px 12px;
-        &:hover {
-          background: #6699ff;
-          color: #f8fcfd;
-        }
-      }
-
-      .search-form {
-            margin: 0 8px;
-            display: inline-block;
-        form {
-          input[type=text], input[type=password] {
-            float: left;
-            width: 88px;
-            box-sizing: border-box;
-          }
-          span { float: left; }
-        }
-      }
-    }
-
-
-  }
-
 }
 
 .sign-form {
@@ -226,9 +255,7 @@ button {
 
 .btn {
   color: #ffffff;
-  padding: 5px 12px;
   display: inline-block;
-  font-size: 12px;
   border: 1px solid;
   border-radius: 5px;
   &:hover {
@@ -285,13 +312,19 @@ button {
     display: block;
     text-align: center;
     border-radius: 6px;
-    opacity: 0.7;
+    opacity: 0.6;
     max-width: 50%;
     margin: 0 auto;
-    &:hover { cursor: pointer; }
+    position: relative;
     p {
       display: block;
       padding: 12px;
+    }
+    span {
+      position: absolute;
+      top: 4px;
+      right: 7px;
+      &:hover { cursor: pointer; }
     }
 }
 
@@ -337,8 +370,24 @@ button {
   }
 }
 
+#layout-menu {
+  display: none;
+  ul {
+    width: 125px;
+    a { padding: 12px 14px; }
+  }
+}
+
+
+@media all and (max-width: 800px) {
+  #layout-menu {
+    display: block;
+    ul { display: none; }
+  }
+}
+
 #contents {
-  margin-top: 80px;
+  margin-top: 30px;
   height: 100%;
 }
 
@@ -368,7 +417,6 @@ button {
   }
 }
 
-
 .debug {
   max-width: 70%;
   background: #d3d3d3;
@@ -376,355 +424,149 @@ button {
   margin: 30px auto;
   border: 1px solid #888888;
 }
+
 /*******************************************
 
 
-                  Users
+                Static_pages
 
 
 *******************************************/
+
+#login {
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  p, h1, a, li { color: #e3e3e3; }
+
+  #login-layout {
+    width: 650px;
+    height: 450px;
+    overflow: hidden;
+    padding: 45px 0;
+    section {
+      float: left;
+      width: 350px;
+      p { font-size: 16px; }
+    }
+    aside {
+      float: right;
+      margin-top: 18px;
+      width: 230px;
+      .sign-form { margin-bottom: 18px; }
+      .btn { float: right; }
+      a {
+        font-size: 12px;
+        color: #6699ff;
+      }
+    }
+  }
+
+  footer {
+    width: 650px;
+    padding-bottom: 35px;
+    margin: 0 auto;
+    text-align: center;
+    li {
+      display: inline-block;
+      a {
+        margin-right: 6px;
+        &:hover { text-decoration: underline; }
+      }
+      &:last-child{ font-size: 10px; }
+    }
+  }
+}
+
+#about, #help {
+  header, section, footer {
+    margin: 0 auto;
+    .twitter-icon {
+      font-size: 70px;
+      color: #6699ff;
+      margin-bottom: 8px;
+    }
+
+  }
+  header, footer {
+    text-align: center;
+    p { font-size: 18px; }
+  }
+  header {
+    border-bottom: 1px solid #bdbdbd;
+    padding-bottom: 30px;
+    margin: 30px auto;
+  }
+
+  footer {
+    border-top: 1px solid #bdbdbd;
+    padding-top: 30px;
+    margin: 30px auto;
+
+    a {
+      margin-top: 10px;
+      font-size: 15px;
+      border: 1px solid #bdbdbd;
+      border-radius: 5px;
+      padding: 5px 12px;
+      display: inline-block;
+      &:hover {
+        color: #ffffff;
+        border-color: #ffffff;
+        background-color: #6699ff;
+        transition: background-color 0.3s, color 0.3s;
+      }
+    }
+  }
+}
+
+#about {
+  section {
+    padding: 10px 0 390px 21px;
+    *{ color: #7a0000; }
+  }
+}
+
+
+#help {
+  section {
+    ul {
+      overflow: hidden;
+      align: center;
+      li {
+        width: 152px;
+        text-align: center;
+        float: left;
+        margin-right: 22px;
+        padding: 25px 19px;
+        border: 1px solid #dfdfdf;
+        border-radius: 4px;
+        &:first-child { margin-left: 43px; }
+        .help-icon {
+          font-size: 26px;
+          color: #6699ff;
+          margin-bottom: 12px;
+        }
+      }
+    }
+
+    p{ font-size: 15px; }
+  }
+}
+
+/*******************************************
+
+
+                  users
+
+
+*******************************************/
+
+#users-index {
+  margin-top: 57px;
+}
 
 #users-new {
   width: 260px;
   margin: 70px auto;
-}
-
-
-/*******************************************
-
-
-                  Tweets
-
-
-*******************************************/
-
-#tri-column-left {
-  float: left;
-  margin-right: 15px;
-  #profile {
-      width: 190px;
-    .profile-background {
-      img {
-        width: 216px;
-        height: 80px;
-        border-top-left-radius: 6px;
-        border-top-right-radius: 6px;
-        margin: -14px -13px;
-      }
-    }
-    .profile-information {
-      margin-top: -12px;
-      .profile-image {
-        img {
-          margin-top: -7px 4px 0 0;
-          padding: 3px;
-          background: #f8fcfd;
-          display: inline-block;
-          border-radius: 8px;
-          width: 54px;
-          height: 54px;
-        }
-        ul {
-          display: inline-block;
-          margin-top: -7px;
-          a{
-            font-size: 17px;
-            &:hover { text-decoration: underline; }
-          }
-          p { font-size: 11px; }
-        }
-      }
-
-    }
-    .profile-list {
-      margin-top: 8px;
-      li {
-        display: inline-block;
-        margin-right: 14px;
-        &:last-child { margin-right: 0; }
-      }
-    }
-
-    .profile-setting { margin-top: 9px; }
-  }
-
-  #trends { display: none; }
-
-}
-
-#tri-column-middle {
-  float: left;
-  width: 420px;
-  margin-right: 15px;
-
-  .post-tweet {
-    padding: 7px 0;
-    border-bottom: 1px solid #dedede;
-    overflow: hidden;
-    img {
-      display: inline-block;
-      float: left;
-      width: 42px;
-      height: 42px;
-      border-radius: 3px;
-    }
-    .tweet-info {
-      float: right;
-      width: 369px;
-      .tweet-info-title {
-        margin-bottom: 2px;
-        li {
-          display: inline-block;
-          font-size: 9px;
-        }
-        a, p {
-          color: #000000;
-          font-family: Arial, sans-serif;
-        }
-        a {
-          font-weight: bold;
-          font-size: 12px;
-          &:hover { text-decoration: underline;}
-        }
-        p { font-size: 11px; }
-      }
-      .tweet-info-icons {
-        margin-top: 7px;
-        li{
-          font-size: 13px;
-          display: inline-block;
-          margin-left: 12px;
-          margin-right: 25px;
-          &:hover {
-            cursor: pointer;
-            * { color: #6699ff; }
-          }
-        }
-
-      }
-    }
-    &:first-child { padding-top: 0; }
-    &:last-child {
-      padding-bottom: 0;
-      border: 0;
-    }
-  }
-
-  #tweet-reload {
-    text-align: center;
-    a {
-      padding: 3px 0;
-      display: block;
-      color: #000545;
-      background: #6699ff;
-    }
-  }
-}
-
-.tweet-form {
-  padding: 14px 0;
-  background: #eef1ff;
-  form {
-    overflow: hidden;
-    .tweet-form-image {
-      float: left;
-      margin-left: 12px;
-      width: 38px;
-      height: 38px;
-    }
-    .tweet-form-info {
-      float: right;
-      margin-right: 12px;
-      textarea {
-        width: 340px;
-        height: 50px;
-        padding: 5px 3px;
-        resize: none;
-      }
-    .tweet-form-info-toolbar {
-      margin-top: 7px;
-      overflow: hidden;
-      .tweet-form-info-toolbar-icons {
-        float: left;
-        margin: 5px 18px;
-        li {
-          display: inline-block;
-          margin-right: 21px;
-          &:hover {
-            cursor: pointer;
-            * { color: #6699ff; }
-          }
-        }
-      }
-      .tweet-form-info-toolbar-submit {
-        float: right;
-        margin-right: 18px;
-        * {
-          display: inline-block;
-          margin-left: 7px;
-        }
-      }
-    }
-  }
-  }
-}
-
-#tri-column-right {
-  float: left;
-  width: 176px;
-}
-
-@media all and (max-width: 800px) {
-  #tri-column-left {
-    margin-left: 26px;;
-    #trends {
-      width: 190px;
-      display: block;
-      margin-top: 10px;
-    }
-  }
-  #tri-column-right { display: none; }
-}
-
-/*******************************************
-
-
-                  Tweets
-
-
-*******************************************/
-
-#twin-column-left {
-  float: left;
-  margin-right: 15px;
-  #profile {
-      width: 190px;
-    .profile-background {
-      img {
-        width: 216px;
-        height: 80px;
-        border-top-left-radius: 6px;
-        border-top-right-radius: 6px;
-        margin: -14px -13px;
-      }
-    }
-    .profile-information {
-      margin-top: -12px;
-      .profile-image {
-        img {
-          margin-top: -7px 4px 0 0;
-          padding: 3px;
-          background: #f8fcfd;
-          display: inline-block;
-          border-radius: 8px;
-          width: 54px;
-          height: 54px;
-        }
-        ul {
-          display: inline-block;
-          margin-top: -7px;
-          a{
-            font-size: 17px;
-            &:hover { text-decoration: underline; }
-          }
-          p { font-size: 11px; }
-        }
-      }
-
-    }
-    .profile-list {
-      margin-top: 8px;
-      li {
-        display: inline-block;
-        margin-right: 14px;
-        &:last-child { margin-right: 0; }
-      }
-    }
-
-    .profile-setting { margin-top: 9px; }
-  }
-
-  #trends { display: none; }
-
-}
-
-#twin-column-right {
-  float: left;
-  width: 667px;
-
-  .follow-profile {
-      width: 168px;
-      margin: 12px 0 0 13px;
-      display: inline-block;
-    .profile-background {
-      img {
-        width: 194px;
-        height: 80px;
-        border-top-left-radius: 6px;
-        border-top-right-radius: 6px;
-        margin: -14px -13px;
-      }
-    }
-    .profile-information {
-      margin-top: -12px;
-      margin-bottom: 10px;
-      position: relative;
-      .profile-image {
-        img {
-          margin-top: -7px 4px 0 0;
-          padding: 3px;
-          background: #f8fcfd;
-          display: inline-block;
-          border-radius: 8px;
-          width: 47px;
-          height: 47px;
-        }
-      }
-      .profile-follow {
-        position: absolute;
-        top: 28px;
-        right: 13px;
-        float: left;
-      }
-
-    }
-    .profile-description {
-      ul {
-        display: inline-block;
-        margin-top: -7px;
-        a{
-          font-size: 17px;
-          &:hover { text-decoration: underline; }
-        }
-        p {
-          margin-top: 0;
-          font-size: 11px;
-        }
-      }
-      p { margin-top: 6px; }
-    }
-    .profile-list {
-      margin-top: 8px;
-      li {
-        display: inline-block;
-        margin-right: 14px;
-        &:last-child { margin-right: 0; }
-      }
-    }
-
-    .profile-setting { margin-top: 9px; }
-  }
-
-  #tweet-reload {
-    text-align: center;
-    a {
-      padding: 3px 0;
-      display: block;
-      color: #000545;
-      background: #6699ff;
-    }
-  }
-}
-
-@media all and (max-width: 800px) {
 }

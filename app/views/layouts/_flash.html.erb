@@ -1,0 +1,11 @@
+<% flash.each do |msg_type, msg| %>
+  <div id="flash" class="flash-<%= msg_type %>">
+    <p><%= msg %></p>
+    <span><%= fa_icon('remove') %></span>
+  </div>
+  <script>
+    $('#flash > span').click(function(){
+      $('#flash').hide();
+    });
+  </script>
+<% end %>

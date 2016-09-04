@@ -1,0 +1,24 @@
+<div id="user-profile">
+
+  <%= link_to @user.name, user_path(@user), class: 'profile-name' %>
+  <p class="profile-id">@<%= @user.name%></p>
+
+  <p class="profile-description">
+    A message from Immigration,
+    Refugees and Citizenship Canada /
+    Un message d'Immigration, Réfugiés
+    et Citoyenneté Canada
+  </p>
+
+  <ul class="profile-information">
+    <li><%= fa_icon("map-marker")%>関東</li>
+    <li><%= fa_icon("link")%>kuronekomyu.iinaa.net</li>
+    <li><%= fa_icon("calendar-o")%>Joined May 2011</li>
+    <li><%= fa_icon("adjust")%>Born on June 11</li>
+  </ul>
+
+  <div class="tweet-to btn btn-primary">
+    <p><%= fa_icon("edit") %>Tweet to <%= @user.name_omit %></p>
+  </div>
+
+</div>

@@ -1,69 +1,27 @@
-<div id="twin-column-left">
-  <div id="profile" class="content-box">
-    <div class="profile-background">
-      <%= image_tag('about_bg.jpg') %>
-    </div>
-    <div class="profile-information">
-      <div class="profile-image">
-        <%= image_tag('home_bg_2.jpg') %>
-        <ul>
-          <li><%= link_to @user.name_omit, user_path(@user) %></li>
-          <li><p><%= @user.name %></p></li>
-        </ul>
-      </div>
-
-    </div>
-    <ul class="profile-list">
-      <li>Tweets<br><%= link_to @user.tweets.count, user_path(@user) %></li>
-      <li>Following<br><%= link_to @user.following.count, following_path(id: @user) %></li>
-      <li>Followers<br><%= link_to @user.followers.count, followers_path(id: @user) %></li>
-    </ul>
-      <div class="profile-setting">
-        <% if logged_in? && @user == log_user %>
-          <%= link_to "Edit profile", edit_user_path(@user), class: 'delete btn btn-info' %>
-        <% elsif logged_in? && @user != log_user %>
-          <div class="follow-user">
-            <%= render 'follows/follow_user' %>
-          </div>
-        <% end %>
-
-        <% if logged_in? && (log_user.admin? || @user == log_user) %>
-          <%= link_to "Delete profile", user_path(@user), method: :delete, data: { confirm: "Are you sure?" }, class: 'delete btn btn-info' %>
-        <% end %>
-      </div>
-  </div>
-
-  <div id="trends" class="content-box">
-    <p>This contains will be filled with reccomended users to follow.</p>
-  </div>
-
-
-</div>
-
-<div id="twin-column-right">
+<div id="follow-list">
   <% @follows.each do |follow| %>
     <div class="follow-profile content-box">
 
-          <div class="profile-background">
-            <%= image_tag('about_bg.jpg') %>
-          </div>
-          <div class="profile-information">
-            <div class="profile-image">
-              <%= image_tag('home_bg_2.jpg') %>
-            </div>
-            <div id="follow-<%= follow.id %>" class="profile-follow">
-              <!-- This rendering method below the comment should give a definition of
-              the local variable which names follow unless instance variable. -->
-              <%= render 'follows/follow_users', follow: follow %>
-            </div>
-          </div>
-          <div class="profile-description">
-            <ul>
-              <li><%= link_to follow.name_omit, user_path(follow) %></li>
-              <li><p><%= follow.name %></p></li>
-            </ul>
-            <p>Sample and samples</p>
-          </div>
+      <div class="profile-background">
+        <%= image_tag('about_bg.jpg') %>
+      </div>
+      <div class="profile-information">
+        <div class="profile-image">
+          <%= image_tag('home_bg_2.jpg') %>
+        </div>
+        <div id="follow-<%= follow.id %>" class="profile-follow">
+          <!-- This rendering method below the comment should give a definition of
+          the local variable which names follow unless instance variable. -->
+          <%= render 'follows/follow_users', follow: follow %>
+        </div>
+      </div>
+      <div class="profile-description">
+        <ul>
+          <li><%= link_to follow.name_omit, user_path(follow) %></li>
+          <li><p><%= follow.name %></p></li>
+        </ul>
+        <p>Sample and samples</p>
+      </div>
 
     </div>
   <% end %>

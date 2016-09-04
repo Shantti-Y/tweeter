@@ -9,8 +9,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    session.delete(:follow_user_id)
     session[:tweet_count] = 20 if session[:tweet_count].nil?
     @user = User.find(params[:id])
+    session[:follow_user_id] = @user.id
     @tweets = @user.tweets.order(:created_at).reverse.take(session[:tweet_count])
     @tweet = Tweet.new()
     session.delete(:tweet_count)

@@ -1,0 +1,75 @@
+<%= image_tag('user_header_bg.jpg', class: 'user-background') %>
+<div class="user-thumbnail">
+  <%= image_tag('help_bg.jpg') %>
+</div>
+
+<div id="user-header" class="global-nav">
+  <div id="header-sizing">
+    <ul id="header-left">
+      <!--
+      <li class="left-image">
+        <%= image_tag('help_bg.jpg') %>
+      </li>
+    -->
+    </ul>
+
+    <ul id="header-middle" class="header-list">
+      <li>
+        <%= link_to user_path(@user) do %>
+        Tweets<br><span><%= @user.tweets.count %></span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to following_path(@user) do %>
+        Following<br><span><%= @user.following.count %></span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to followers_path(@user) do %>
+        Followers<br><span><%= @user.followers.count %></span>
+        <% end %>
+      </li>
+    </ul>
+
+    <ul id="header-right">
+
+      <% if logged_in?%>
+      <li>
+        <i id="user-dropdown" class="dropdown"><%= fa_icon("cog", class: 'fa-lg') %></i>
+      </li>
+      <script>
+        $('#user-dropdown').click(function(){
+          $('#user-menu > ul').toggle();
+        });
+      </script>
+      <% end %>
+
+
+      <% if logged_in? && @user == log_user %>
+        <li><%= link_to "Edit profile", edit_user_path(@user), class: 'delete btn btn-info' %></li>
+      <% elsif logged_in? && @user != log_user %>
+        <li class="follow-user"><%= render 'follows/follow_user' %></li>
+      <% end %>
+
+    </ul>
+  </div>
+  <% if logged_in?%>
+  <div id="user-menu" class="drop-menu">
+    <ul>
+      <li><%= link_to "Tweet to #{@user.name}", '#' %></li>
+      <li><%= link_to "Add or remove from lists", '#' %></li>
+      <li class="drop-border"></li>
+      <li><%= link_to "Mute", '#' %></li>
+      <li><%= link_to "Block", '#' %></li>
+      <li><%= link_to "Report", '#' %></li>
+      <% if logged_in? && (log_user.admin? || @user == log_user) %>
+        <li class="drop-border"></li>
+        <li><%= link_to "Delete profile", user_path(@user), method: :delete,
+         data: { confirm: "Are you sure?" }, class: 'delete' %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+</div>
+
+<div id="user-blank"></div>

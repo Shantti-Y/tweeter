@@ -3,12 +3,16 @@ class FollowsController < ApplicationController
   before_action :url_log, only: [:following, :followers]
 
   def following
+    session.delete(:follow_user_id)
     @user = User.find(params[:id])
+    session[:follow_user_id] = @user.id
     @follows = @user.following
   end
 
   def followers
+    session.delete(:follow_user_id)
     @user = User.find(params[:id])
+    session[:follow_user_id] = @user.id
     @follows = @user.followers
   end
 
@@ -19,7 +23,7 @@ class FollowsController < ApplicationController
     @follow = log_user.following.find(params[:id])
       respond_to do |format|
         format.html { redirect_back_to(root_url) }
-        format.js {  }
+        format.js { @user = User.find(session[:follow_user_id]) }
       end
   end
 
@@ -31,7 +35,7 @@ class FollowsController < ApplicationController
     log_user.unfollow(@user)
       respond_to do |format|
         format.html { redirect_back_to(root_url) }
-        format.js { }
+        format.js { @user = User.find(session[:follow_user_id]) }
       end
 
   end

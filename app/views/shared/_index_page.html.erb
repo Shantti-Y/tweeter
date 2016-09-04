@@ -1,0 +1,30 @@
+<div id="two-columns">
+  <div id="columns-left">
+    <%= render 'shared/index_profile' %>
+
+    <%= render 'shared/trends' %>
+  </div>
+
+  <div id="columns-right">
+
+      <div id="columns-right-left">
+        <div class="content-box">
+          <%= render 'tweets/new' %>
+
+          <div id="tweet-line">
+            <%= render 'shared/tweet_list' %>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="columns-right-right">
+        <%= render 'shared/trends' %>
+      </div>
+
+    </div>
+
+
+
+</div>

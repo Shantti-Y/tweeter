@@ -1,0 +1,52 @@
+
+<div id="header-nav" class="global-nav">
+
+  <ul id="pull-left">
+    <li class="compact-icon"><%= link_to fa_icon("twitter", class: 'fa-lg'), root_path %></li>
+    <li>
+      <ul class="non-drop-list">
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "About", about_path %></li>
+      </ul>
+    </li>
+
+  </ul>
+
+  <ul id="pull-right">
+    <% if logged_in? %>
+      <li class="compact-icon">
+        <i id="layout-dropdown" class="dropdown"><%= fa_icon("bars", class: 'fa-lg') %></i>
+      </li>
+      <li>
+        <ul class="non-drop-list">
+          <li><%= render 'layouts/search' %></li>
+          <li><%= link_to "Profile", user_path(log_user) %></li>
+          <li><%= link_to "Setting", edit_user_path(log_user) %></li>
+          <li><%= link_to "Log out", logout_path, method: :delete %></li>
+        </ul>
+      </li>
+      <script>
+        $('#layout-dropdown').click(function(){
+          $('#layout-menu > ul').toggle();
+        });
+      </script>
+
+    <% else %>
+      <li><%= link_to "Log in", root_path %></li>
+    <% end %>
+  </ul>
+</div>
+
+<% if logged_in? %>
+<div id="layout-menu" class="drop-menu">
+  <ul>
+    <li><%= render 'layouts/search' %></li>
+    <li class="drop-border"></li>
+    <li><%= link_to "Profile", user_path(log_user) %></li>
+    <li><%= link_to "Help", help_path %></li>
+    <li class="drop-border"></li>
+    <li><%= link_to "Setting", edit_user_path(log_user) %></li>
+    <li><%= link_to "Log out", logout_path, method: :delete %></li>
+  </ul>
+</div>
+<% end %>

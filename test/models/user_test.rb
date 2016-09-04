@@ -131,10 +131,10 @@ class UserTest < ActiveSupport::TestCase
   test "should follow other user" do
     michael = users(:michael)
     archer = users(:archer)
-    lana = users(:lana)
+    chuck = users(:chuck)
     michael.follow(archer)
     assert michael.following?(archer)
-    assert_not michael.following?(lana)
+    assert_not michael.following?(chuck)
   end
 
   test "should unfollow other user" do
@@ -147,10 +147,14 @@ class UserTest < ActiveSupport::TestCase
 
   test "should feed right posts for particular user" do
     michael = users(:michael)
+    lana = users(:lana)
     jimmy = users(:jimmy)
-    chuck = users(:chuck)
-    michael.follow(jimmy)
-    assert_equal 44, michael.feed.count
+    archer = users(:archer)
+    assert_equal 64, michael.feed.count
+    michael.follow(archer)
+    assert_equal 67, michael.feed.count
+    michael.unfollow(lana)
+    assert_equal 47, michael.feed.count
   end
 
 end

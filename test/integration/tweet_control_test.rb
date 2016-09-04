@@ -21,45 +21,45 @@ class TweetControlTest < ActionDispatch::IntegrationTest
     assert_select '.flash-success'
 
     # Reloading to get 20 more previous tweets
-    assert_select '.post-tweet', 20
-    assert_select '.post-tweet .fa-remove', 20
+    assert_select '.list-tweet', 20
+    assert_select '.list-tweet .fa-remove', 20
     assert_select '#tweet-reload'
 
     get reload_path(count: 20)
     follow_redirect!
-    assert_select '.post-tweet', 24
-    assert_select '.post-tweet .fa-remove', 24
+    assert_select '.list-tweet', 24
+    assert_select '.list-tweet .fa-remove', 24
     assert_select '#tweet-reload', 0
 
     # Reloading to get 20 more previous tweets from following users
     @first_user.follow(@third_user)
     get root_path
-    assert_select '.post-tweet', 20
-    assert_select '.post-tweet .fa-remove', 20
+    assert_select '.list-tweet', 20
+    assert_select '.list-tweet .fa-remove', 20
     assert_select '#tweet-reload'
 
     get reload_path(count: 20)
     follow_redirect!
-    assert_select '.post-tweet', 40
-    assert_select '.post-tweet .fa-remove', 40
+    assert_select '.list-tweet', 40
+    assert_select '.list-tweet .fa-remove', 40
     assert_select '#tweet-reload'
 
     get reload_path(count: 40)
     follow_redirect!
-    assert_select '.post-tweet', 44
-    assert_select '.post-tweet .fa-remove', 44
+    assert_select '.list-tweet', 44
+    assert_select '.list-tweet .fa-remove', 44
     assert_select '#tweet-reload', 0
 
     # Locating own user path
     get user_path(@first_user)
-    assert_select '.post-tweet', 20
-    assert_select '.post-tweet .fa-remove', 20
+    assert_select '.list-tweet', 20
+    assert_select '.list-tweet .fa-remove', 20
     assert_select '#tweet-reload'
 
     get reload_path(count: 20)
     follow_redirect!
-    assert_select '.post-tweet', 24
-    assert_select '.post-tweet .fa-remove', 24
+    assert_select '.list-tweet', 24
+    assert_select '.list-tweet .fa-remove', 24
     assert_select '#tweet-reload', 0
   end
 
@@ -72,26 +72,26 @@ class TweetControlTest < ActionDispatch::IntegrationTest
     assert_select '.flash-success'
 
     # Reloading to get 20 more previous tweets
-    assert_select '.post-tweet', 3
-    assert_select '.post-tweet .fa-remove', 3
+    assert_select '.list-tweet', 3
+    assert_select '.list-tweet .fa-remove', 3
     assert_select '#tweet-reload', 0
 
     # Reloading to get 20 more previous tweets from following users
     @second_user.follow(@third_user)
     get root_path
-    assert_select '.post-tweet', 20
+    assert_select '.list-tweet', 20
     assert_select '#tweet-reload'
 
     get reload_path(count: 20)
     follow_redirect!
-    assert_select '.post-tweet', 23
-    assert_select '.post-tweet .fa-remove', 3
+    assert_select '.list-tweet', 23
+    assert_select '.list-tweet .fa-remove', 3
     assert_select '#tweet-reload', 0
 
     # Locating own user path
     get user_path(@second_user)
-    assert_select '.post-tweet', 3
-    assert_select '.post-tweet .fa-remove', 3
+    assert_select '.list-tweet', 3
+    assert_select '.list-tweet .fa-remove', 3
     assert_select '#tweet-reload', 0
   end
 

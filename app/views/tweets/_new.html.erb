@@ -1,28 +1,25 @@
 <div class="tweet-form">
 
   <%= form_for(@tweet) do |f| %>
-    <%= image_tag('about_bg.jpg', class: 'tweet-form-image') %>
+    <%= image_tag('about_bg.jpg', class: 'form-image') %>
 
-    <div class="tweet-form-info">
+    <div class="form-info">
       <%= f.text_area :content, placeholder: "What's happening?" %>
 
-      <div class="tweet-form-info-toolbar">
-        <ul class="tweet-form-info-toolbar-icons">
-          <li><%= fa_icon "camera", class: 'fa-lg' %></li>
-          <li><%= fa_icon "film", class: 'fa-lg' %></li>
-          <li><%= fa_icon "map-marker", class: 'fa-lg' %></li>
+      <div class="info-toolbar">
+        <ul class="toolbar-icons">
+          <li><%= fa_icon "camera" %></li>
+          <li><%= fa_icon "film" %></li>
+          <li><%= fa_icon "map-marker" %></li>
         </ul>
 
-        <div class="tweet-form-info-toolbar-submit">
+        <div class="toolbar-submit">
           <p>140</p>
           <%= f.submit "Tweet", class: 'btn btn-info' %>
         </div>
 
       </div>
     </div>
-
-
-
   <% end %>
 
 </div>

@@ -1,0 +1,23 @@
+<div id="index-profile" class="content-box">
+
+  <div class="profile-background">
+    <%= image_tag('about_bg.jpg') %>
+  </div>
+
+  <div class="profile-information">
+    <div class="information-thumbnail">
+      <%= image_tag('home_bg_2.jpg') %>
+    </div>
+    <ul class="information-name">
+      <li><%= link_to @user.name_omit, user_path(@user) %></li>
+      <li>@<%= @user.name %></li>
+    </ul>
+  </div>
+
+  <ul class="profile-list">
+    <li>Tweets<br><%= link_to @user.tweets.count, user_path(@user) %></li>
+    <li>Following<br><%= link_to @user.following.count, following_path(@user) %></li>
+    <li>Followers<br><%= link_to @user.followers.count, followers_path(@user) %></li>
+  </ul>
+  
+</div>

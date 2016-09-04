@@ -1,28 +1,31 @@
-<% @tweets.each do |tweet| %>
-  <div id="<%= tweet.user.id %>-<%= tweet.id %>" class="post-tweet">
-    <%= image_tag('home_bg_2.jpg') %>
-    <div class="tweet-info">
-      <ul class="tweet-info-title">
-        <li><%= link_to tweet.user.name_omit, user_path(tweet.user) %></li>
-        <li><%= tweet.user.name %></li>
-        <li><%= tweet.tweeted_at %></li>
-      </ul>
-      <p><%= tweet.content %></p>
-      <ul class="tweet-info-icons">
-        <li><%= fa_icon "reply" %></li>
-        <li><%= fa_icon "retweet" %></li>
-        <li><%= fa_icon "star" %></li>
-        <% if logged_in? && (log_user.admin? || tweet.user == log_user) %>
-          <li><%= link_to fa_icon("remove"), tweet_path(tweet), method: :delete %></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-<% end %>
+<div id="tweet-list">
+  <% @tweets.each do |tweet| %>
+    <div id="<%= tweet.user.id %>-<%= tweet.id %>" class="list-tweet">
+      <%= image_tag('home_bg_2.jpg', class: 'tweet-thumbnail') %>
 
-<% if (session[:forwarding_url] == root_url && @tweets.count < @user.feed.count) ||
-  (session[:forwarding_url] == user_url(@user) && @tweets.count < @user.tweets.count) %>
-  <div id="tweet-reload">
-    <%= link_to "Reload previous tweets", reload_path(id: @user, count: @tweets.count), remote: true %>
-  </div>
-<% end %>
+      <div class="tweet-info">
+        <ul class="info-title">
+          <li><%= link_to tweet.user.name_omit, user_path(tweet.user) %></li>
+          <li>@<%= tweet.user.name %></li>
+          <li><%= tweet.tweeted_at %></li>
+        </ul>
+        <p class="info-content"><%= tweet.content %></p>
+        <ul class="info-icons">
+          <li><%= fa_icon "reply" %></li>
+          <li><%= fa_icon "retweet" %></li>
+          <li><%= fa_icon "star" %></li>
+          <% if logged_in? && (log_user.admin? || tweet.user == log_user) %>
+            <li><%= link_to fa_icon("remove"), tweet_path(tweet), method: :delete %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <% if (session[:forwarding_url] == root_url && @tweets.count < @user.feed.count) ||
+    (session[:forwarding_url] == user_url(@user) && @tweets.count < @user.tweets.count) %>
+    <div id="tweet-reload">
+      <%= link_to "Reload previous tweets", reload_path(id: @user, count: @tweets.count), remote: true %>
+    </div>
+  <% end %>
+</div>

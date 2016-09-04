@@ -1,8 +1,18 @@
 
 <% unless follow == log_user %>
   <% if log_user.following?(follow) %>
-    <%= link_to 'Unfollow', follow_path(follow), method: :delete, class: 'btn btn-danger', remote: true %>
+    <%= link_to 'Following', follow_path(follow), method: :delete, class: 'btn btn-unfollow btn-primary', remote: true %>
   <% else %>
-    <%= link_to 'Follow', follows_path(id: follow), method: :post, class: 'btn btn-info', remote: true %>
+    <%= link_to 'Follow', follows_path(id: follow), method: :post, class: 'btn btn-follow btn-info', remote: true %>
   <% end %>
 <% end %>
+<script>
+  $('.btn-unfollow').hover(function(){
+    $(this).html('Unfollow');
+    $(this).addClass('btn-danger');
+  });
+  $('.btn-unfollow').mouseout(function(){
+    $(this).html('Following');
+    $(this).removeClass('btn-danger');
+  });
+</script>
